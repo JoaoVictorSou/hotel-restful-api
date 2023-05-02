@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  hotel-restful-api:
+    image: sljoaos/hotel-restful-api:0.1
+    container_name: hotel-restful-api
+    networks:
+      - hotel-restful-api-default
+    ports:
+      - 3030:80
+    volumes:
+      - "hotel-restful-data:/app/static/data-records"
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+networks:
+  hotel-restful-api-default:
+
+volumes:
+  hotel-restful-data:
