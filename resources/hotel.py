@@ -1,4 +1,5 @@
 from flask_restful import Resource, reqparse
+from models.hotel import HotelModel
 
 hotels = [
     {
@@ -23,24 +24,6 @@ hotels = [
     'city': 'Santa Catarina',
     },
 ]
-
-class HotelModel:
-    def __init__(self, hotel_id, name, star, price, city):
-        self.hotel_id = hotel_id
-        self.name = name
-        self.star = star
-        self.price = price
-        self.city = city
-    
-    def json(self):
-        return {
-            'hotel_id': self.hotel_id,
-            'name': self.name,
-            'star': self.star,
-            'price': self.price,
-            'city': self.city
-        }
-
 
 class Hotels(Resource):
     def get(self):
@@ -92,17 +75,22 @@ class Hotel(Resource):
     def put(self, hotel_id):
         data = self.args.parse_args()
 
-        hotel = Hotel.find_hotel(hotel_id)
+        match_hotel = Hotel.find_hotel(hotel_id)
 
-        if hotel:
-            hotel.update(
+        if match_hotel:
+            hotel = HotelModel(
+                hotel_id,
+                **data
+            )
+
+            match_hotel.update(
                 {
-                    **data
+                    **hotel.json()
                 }
             )
 
             code = 200
-            return hotel, code
+            return match_hotel, code
         else:
             hotel = {
                 "hotel_id": hotel_id,

@@ -1,0 +1,174 @@
+_type: export
+__export_format: 4
+__export_date: 2023-05-05T12:15:18.634Z
+__export_source: insomnia.desktop.app:v2023.1.0
+resources:
+  - _id: req_02d6641c87fc43eda1a968f64458dbcc
+    parentId: fld_b1c4978a45894c01b7015c6147f912d4
+    modified: 1683286585309
+    created: 1683286548340
+    url: http://127.0.0.1:3000/hotels
+    name: /hotels
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1683286548340
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b1c4978a45894c01b7015c6147f912d4
+    parentId: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
+    modified: 1683286537175
+    created: 1683286537175
+    name: hotel
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1683286537175
+    _type: request_group
+  - _id: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
+    parentId: null
+    modified: 1683286517958
+    created: 1683286517958
+    name: hotel-restful-api
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_0ddaeaef8a4447c48dbd3b8187f49acc
+    parentId: fld_b1c4978a45894c01b7015c6147f912d4
+    modified: 1683286974146
+    created: 1683286593115
+    url: http://127.0.0.1:3000/hotels/alpha
+    name: /hotels/<string:hotel_id>
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1683286548290
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ab41267cfd224c85ac112d9ad557beaf
+    parentId: fld_b1c4978a45894c01b7015c6147f912d4
+    modified: 1683286838060
+    created: 1683286659137
+    url: http://127.0.0.1:3000/hotels/esuites
+    name: /hotels/<string:hotel_id>
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"E-suites",
+        	"star": 5,
+        	"price": 350.5,
+        	"city": "Natal"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1683286548240
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0276f467ce6e4434a93acf43548e9485
+    parentId: fld_b1c4978a45894c01b7015c6147f912d4
+    modified: 1683288137551
+    created: 1683286673623
+    url: http://127.0.0.1:3000/hotels/caravela
+    name: /hotels/<string:hotel_id>
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"E-suites Caravela",
+        	"star": 5,
+        	"price": 800,
+        	"city": "Salvador"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1683286548190
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_535856ce20c04a5d9f83e90d2ff6665e
+    parentId: fld_b1c4978a45894c01b7015c6147f912d4
+    modified: 1683287111027
+    created: 1683286689724
+    url: http://127.0.0.1:3000/hotels/esuites
+    name: /hotels/<string:hotel_id>
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1683286548140
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_15ce74bfffd0a040c4c4f1473af91272a54d2494
+    parentId: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
+    modified: 1683286517962
+    created: 1683286517962
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1683286517962
+    _type: environment
+  - _id: jar_15ce74bfffd0a040c4c4f1473af91272a54d2494
+    parentId: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
+    modified: 1683286517963
+    created: 1683286517963
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_666e24e336134e788b5222f280e04922
+    parentId: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
+    modified: 1683286517959
+    created: 1683286517959
+    fileName: hotel-restful-api
+    contents: ""
+    contentType: yaml
+    _type: api_spec
