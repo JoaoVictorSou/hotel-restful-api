@@ -24,6 +24,24 @@ hotels = [
     },
 ]
 
+class HotelModel:
+    def __init__(self, hotel_id, name, star, price, city):
+        self.hotel_id = hotel_id
+        self.name = name
+        self.star = star
+        self.price = price
+        self.city = city
+    
+    def json(self):
+        return {
+            'hotel_id': self.hotel_id,
+            'name': self.name,
+            'star': self.star,
+            'price': self.price,
+            'city': self.city
+        }
+
+
 class Hotels(Resource):
     def get(self):
         return hotels
@@ -60,14 +78,14 @@ class Hotel(Resource):
         math_hotel = Hotel.find_hotel(hotel_id)
 
         if not math_hotel:
-            hotel = {
-                'hotel_id': hotel_id,
+            hotel = HotelModel(
+                hotel_id = hotel_id,
                 **data
-            }
+            )
 
-            hotels.append(hotel)
+            hotels.append(hotel.json())
 
-            return hotel, 200
+            return hotel.json(), 200
         
         return {'message': 'duplicate data.'}, 400
     
@@ -95,4 +113,11 @@ class Hotel(Resource):
 
             code = 201
             return hotel, code
+
+    def delete(self, hotel_id):
+        global hotels
+        hotels = [hotel for hotel in hotels if hotel['hotel_id'] != hotel_id]
+
+        code = 200
+        return {'message': 'hotel deleted'}, code
 
