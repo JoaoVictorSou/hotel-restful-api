@@ -1,9 +1,15 @@
-FROM python:3.11
+FROM debian:buster-slim
 WORKDIR /app
 ENV PORT=80
 EXPOSE $PORT
 COPY . .
 
-RUN pip install -r ./requirements.txt
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    vim
 
-ENTRYPOINT python ./main.py
+RUN pip3 install --upgrade pip==22.0.2 \
+    && pip3 install -r ./requirements.txt
+
+ENTRYPOINT python3 ./main.py

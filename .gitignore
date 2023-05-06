@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # Project data
-/static/data-records
-/data/
+/static/data-records/*
+/data/*

@@ -20,7 +20,7 @@ hotels = [
     'hotel_id': 'bravo',
     'name': 'Bravo Hotel',
     'star': 4.4,
-    'price': 380.90,
+    'price': 3800.90,
     'city': 'Santa Catarina',
     },
     {

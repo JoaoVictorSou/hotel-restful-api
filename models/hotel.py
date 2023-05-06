@@ -1,10 +1,13 @@
-class HotelModel:
-    def __init__(self, hotel_id, name, star, price, city):
-        self.hotel_id = hotel_id
-        self.name = name
-        self.star = star
-        self.price = price
-        self.city = city
+from sql_alchemy import database
+
+class HotelModel(database.Model):
+    __tablename__ = 'hoteis' # O nome real da tabela no banco
+
+    hotel_id = database.Column(database.String, primary_key = True)
+    name = database.Column(database.String(80), nullable = False)
+    star = database.Column(database.Float(precision=2, decimal_return_scale=1))
+    price = database.Column(database.Float(precision=8, decimal_return_scale=2))
+    city = database.Column(database.String)
     
     def json(self):
         return {
@@ -14,3 +17,4 @@ class HotelModel:
             'price': self.price,
             'city': self.city
         }
+    
