@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
+from sql_alchemy import database
 
 hotels = [
     {
@@ -27,7 +28,7 @@ hotels = [
 
 class Hotels(Resource):
     def get(self):
-        return hotels
+        return HotelModel.all_hotels()
     
 
 class Hotel(Resource):
@@ -37,20 +38,13 @@ class Hotel(Resource):
     args.add_argument('price')
     args.add_argument('city')
     
-    @classmethod
-    def find_hotel(cls, hotel_id):
-        hotel = [hotel for hotel in hotels if hotel.get('hotel_id') == hotel_id]
-        hotel = hotel[0] if hotel else None
-
-        return hotel
-    
     def get(self, hotel_id: str):
-        hotel = Hotel.find_hotel(hotel_id)
+        hotel = HotelModel.query.get(hotel_id)
         print(hotel)
         
         if hotel:
             code = 200
-            return hotel, code
+            return hotel.json(), code
         else:
             code = 404
             return {'message': 'Hotel not found.'}, code
@@ -58,7 +52,7 @@ class Hotel(Resource):
     def post(self, hotel_id):
         data = self.args.parse_args()
 
-        math_hotel = Hotel.find_hotel(hotel_id)
+        math_hotel = HotelModel.find_hotel(hotel_id)
 
         if not math_hotel:
             hotel = HotelModel(
@@ -66,11 +60,11 @@ class Hotel(Resource):
                 **data
             )
 
-            hotels.append(hotel.json())
+            hotel.save_hotel()
 
-            return hotel.json(), 200
+            return hotel.json(), 201
         
-        return {'message': 'duplicate data.'}, 400
+        return {'message': 'Hotel already exists.'}, 400
     
     def put(self, hotel_id):
         data = self.args.parse_args()

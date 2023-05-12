@@ -91,24 +91,3 @@ def insert_hotel(hotels: list):
         cursor.close()
         connection.close()
 
-def select_all_hotels():
-    all_hotels = []
-    
-    try:
-        connection = sqlite3.connect(CONNECT_STRING)
-        cursor = connection.cursor()
-
-        sql_query = """
-            SELECT *
-            FROM hotels
-        """
-
-        cursor.execute(sql_query)
-
-        all_hotels = cursor.fetchall()
-    finally:
-        cursor.close()
-        connection.close()
-    
-    return all_hotels
-

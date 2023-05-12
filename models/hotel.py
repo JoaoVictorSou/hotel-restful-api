@@ -1,14 +1,14 @@
 from sql_alchemy import database
 
 class HotelModel(database.Model):
-    __tablename__ = 'hoteis' # O nome real da tabela no banco
+    __tablename__ = 'hotels' # O nome real da tabela no banco
 
     hotel_id = database.Column(database.String, primary_key = True)
     name = database.Column(database.String(80), nullable = False)
     star = database.Column(database.Float(precision=2, decimal_return_scale=1))
     price = database.Column(database.Float(precision=8, decimal_return_scale=2))
     city = database.Column(database.String)
-    
+
     def json(self):
         return {
             'hotel_id': self.hotel_id,
@@ -18,3 +18,18 @@ class HotelModel(database.Model):
             'city': self.city
         }
     
+    def save_hotel(self):
+        database.session.add(self)
+        database.session.commit()
+
+    @classmethod
+    def all_hotels(cls):
+        hotels =  [hotel.json() for hotel in cls.query.all()]
+
+        return hotels
+
+    @classmethod
+    def find_hotel(cls, hotel_id):
+        hotel = cls.query.filter_by(hotel_id=hotel_id).first()
+        
+        return hotel
