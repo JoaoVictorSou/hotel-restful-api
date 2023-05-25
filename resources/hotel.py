@@ -2,30 +2,6 @@ from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
 from sql_alchemy import database
 
-hotels = [
-    {
-    'hotel_id': 'alpha',
-    'name': 'Alpha Hotel',
-    'star': 4.3,
-    'price': 420.34,
-    'city': 'Rio de Janeiro',
-    },
-    {
-    'hotel_id': 'bravo',
-    'name': 'Bravo Hotel',
-    'star': 4.4,
-    'price': 380.90,
-    'city': 'Santa Catarina',
-    },
-    {
-    'hotel_id': 'charlie',
-    'name': 'Charlie Hotel',
-    'star': 3.9,
-    'price': 320.2,
-    'city': 'Santa Catarina',
-    },
-]
-
 class Hotels(Resource):
     def get(self):
         return HotelModel.all_hotels()
@@ -39,8 +15,7 @@ class Hotel(Resource):
     args.add_argument('city')
     
     def get(self, hotel_id: str):
-        hotel = HotelModel.query.get(hotel_id)
-        print(hotel)
+        hotel = HotelModel.find_hotel(hotel_id)
         
         if hotel:
             code = 200
@@ -55,12 +30,10 @@ class Hotel(Resource):
         math_hotel = HotelModel.find_hotel(hotel_id)
 
         if not math_hotel:
-            hotel = HotelModel(
+            hotel = HotelModel.create_hotel(
                 hotel_id = hotel_id,
                 **data
             )
-
-            hotel.save_hotel()
 
             return hotel.json(), 201
         
@@ -69,32 +42,23 @@ class Hotel(Resource):
     def put(self, hotel_id):
         data = self.args.parse_args()
 
-        match_hotel = Hotel.find_hotel(hotel_id)
+        hotel = HotelModel.find_hotel(hotel_id)
 
-        if match_hotel:
-            hotel = HotelModel(
-                hotel_id,
+        if hotel:
+            hotel.update_hotel(
                 **data
-            )
-
-            match_hotel.update(
-                {
-                    **hotel.json()
-                }
             )
 
             code = 200
-            return match_hotel, code
         else:
-            hotel = {
-                "hotel_id": hotel_id,
+            hotel = HotelModel.create_hotel(
+                hotel_id = hotel_id,
                 **data
-            }
+            )
 
-            hotels.append(hotel)
-
-            code = 201
-            return hotel, code
+            code = 201        
+                    
+        return hotel.json(), code
 
     def delete(self, hotel_id):
         global hotels

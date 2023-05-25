@@ -22,11 +22,33 @@ class HotelModel(database.Model):
         database.session.add(self)
         database.session.commit()
 
+    def update_hotel(self, name, star, price, city):
+        self.name = name
+        self.star = star
+        self.price = price
+        self.city = city
+
+        self.save_hotel()
+
     @classmethod
     def all_hotels(cls):
         hotels =  [hotel.json() for hotel in cls.query.all()]
 
         return hotels
+
+    @classmethod
+    def create_hotel(cls, hotel_id, name, star, price, city):
+        hotel = cls(
+            hotel_id = hotel_id,
+            name = name,
+            star = star,
+            price = price,
+            city = city
+        )
+
+        hotel.save_hotel()
+
+        return hotel
 
     @classmethod
     def find_hotel(cls, hotel_id):
