@@ -29,9 +29,10 @@ from resources.hotel import Hotels, Hotel
 api.add_resource(Hotels, '/hotels')
 api.add_resource(Hotel, '/hotels/<string:hotel_id>')
 
-from resources.user import User, UserRegister
+from resources.user import User, UserRegister, UserLogin
 api.add_resource(User, '/users/<int:user_id>')
 api.add_resource(UserRegister, '/users')
+api.add_resource(UserLogin, '/login')
 
 with app.app_context():
     database.create_all()

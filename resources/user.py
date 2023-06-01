@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
+from flask_jwt_extended import create_access_token
 
 class User(Resource):
     def get(self, user_id):
@@ -30,9 +31,34 @@ class UserRegister(Resource):
         args.add_argument('username', type = str, required = True, help = "The field 'username' cannot be left blank")
         args.add_argument('password', type = str, help = "The field 'password' cannot be left blank")
         data = args.parse_args()
+        
+        user = UserModel.query.filter_by(username = data.username).first()
 
-        user = UserModel.create_user(**data)
+        if not user:
+            user = UserModel.create_user(**data)
 
-        code = 201
-        return user.json(), code
+            code = 201
+            return user.json(), code
+
+        code = 400
+        return {"message": "The user '{}' already exists.".format(data.username)}, 400
+
+class UserLogin(Resource):
+    @classmethod
+    def post(cls):
+        args = reqparse.RequestParser()
+        args.add_argument('username', type = str, required = True, help = "This field cannot be left blank.")
+        args.add_argument('password', type = str, required = True, help = "This field cannot be left blank.")
+
+        data = args.parse_args()
+        user = UserModel.query.filter_by(username=data.username).first()
+        
+        if user and user.hash == data.password:
+            access_token = "343423"
+            code = 200
+            return {
+                "message": "Login is successful.",
+                "access_token": access_token
+            }, code
+
 
