@@ -131,3 +131,6 @@ dmypy.json
 # Project data
 /static/data-records/*
 /data/*
+
+#Credentials
+.secrets.toml

@@ -54,11 +54,13 @@ class UserLogin(Resource):
         user = UserModel.query.filter_by(username=data.username).first()
         
         if user and user.hash == data.password:
-            access_token = "343423"
+            access_token = create_access_token(user.user_id)
             code = 200
             return {
                 "message": "Login is successful.",
                 "access_token": access_token
             }, code
+        
+        return {"message": "invalid user or password."}
 
 

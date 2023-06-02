@@ -2,6 +2,8 @@ from flask import Flask
 from flask_restful import Resource, Api
 from sql_alchemy import database
 from config import settings
+from flask_jwt_extended import JWTManager
+
 import os
 
 APPLICATION_PORT = os.environ.get('PORT')
@@ -15,6 +17,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{CONNECT_STRING}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = settings.SECRET_KEY
 
 # Integração com extensões do Flask
 api = Api(app)
@@ -24,6 +27,7 @@ De forma que o método init_app possibilita que ele seja integrado ao Flask,
 sem que essa instância seja necessariamente alocada neste arquivo - o principal.
 """
 database.init_app(app)
+jwt = JWTManager(app)
 
 from resources.hotel import Hotels, Hotel
 api.add_resource(Hotels, '/hotels')
