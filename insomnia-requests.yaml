@@ -1,8 +1,132 @@
 _type: export
 __export_format: 4
-__export_date: 2023-05-05T12:15:18.634Z
+__export_date: 2023-06-03T14:08:00.615Z
 __export_source: insomnia.desktop.app:v2023.1.0
 resources:
+  - _id: req_2e9ff32cb87b4cc3a9b568b170480af5
+    parentId: fld_aa12a06b14b44419913f6df9f2a01921
+    modified: 1685801159042
+    created: 1685618130980
+    url: http://127.0.0.1:3000/users/3
+    name: /users/{user_id}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NTgwMTA1NiwianRpIjoiN2UwZjYzOGMtZDg4ZS00NTliLWE4NWItMjdmODJlNGFmMTIxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjg1ODAxMDU2LCJleHAiOjE2ODU4MDE5NTZ9.Fn0fy7BHvlD0hX7vGCKDJOCQBft-fi0HU4bvQrHAEyg
+      prefix: Bearer
+    metaSortKey: -1685618130980
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_aa12a06b14b44419913f6df9f2a01921
+    parentId: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
+    modified: 1685618056954
+    created: 1685618056954
+    name: user
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1685618056954
+    _type: request_group
+  - _id: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
+    parentId: null
+    modified: 1683286517958
+    created: 1683286517958
+    name: hotel-restful-api
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_91c655cc29464458b6b4d9902c0be5bf
+    parentId: fld_aa12a06b14b44419913f6df9f2a01921
+    modified: 1685801125648
+    created: 1685623555422
+    url: http://127.0.0.1:3000/users
+    name: /users
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username": "sljoaos",
+        	"password": "crf"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685618130930
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_284afabeaba047dfb7b5fd16730e0eb3
+    parentId: fld_aa12a06b14b44419913f6df9f2a01921
+    modified: 1685801091645
+    created: 1685626261376
+    url: http://127.0.0.1:3000/login
+    name: /login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username": "sljoaos",
+        	"password": "crf"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NTgwMTA1NiwianRpIjoiN2UwZjYzOGMtZDg4ZS00NTliLWE4NWItMjdmODJlNGFmMTIxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjg1ODAxMDU2LCJleHAiOjE2ODU4MDE5NTZ9.Fn0fy7BHvlD0hX7vGCKDJOCQBft-fi0HU4bvQrHAEyg
+      prefix: Bearer
+    metaSortKey: -1685618130905
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f0af75530b384f8a976e341f46ec740a
+    parentId: fld_aa12a06b14b44419913f6df9f2a01921
+    modified: 1685624269179
+    created: 1685624213003
+    url: http://127.0.0.1:3000/users/1
+    name: /users/{user_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1685618130880
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_02d6641c87fc43eda1a968f64458dbcc
     parentId: fld_b1c4978a45894c01b7015c6147f912d4
     modified: 1683286585309
@@ -34,19 +158,11 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1683286537175
     _type: request_group
-  - _id: wrk_a9cdf4ed0d8549cdb40dc4b433b03850
-    parentId: null
-    modified: 1683286517958
-    created: 1683286517958
-    name: hotel-restful-api
-    description: ""
-    scope: collection
-    _type: workspace
   - _id: req_0ddaeaef8a4447c48dbd3b8187f49acc
     parentId: fld_b1c4978a45894c01b7015c6147f912d4
-    modified: 1683286974146
+    modified: 1683913159465
     created: 1683286593115
-    url: http://127.0.0.1:3000/hotels/alpha
+    url: http://127.0.0.1:3000/hotels/bravo
     name: /hotels/<string:hotel_id>
     description: ""
     method: GET
@@ -65,9 +181,9 @@ resources:
     _type: request
   - _id: req_ab41267cfd224c85ac112d9ad557beaf
     parentId: fld_b1c4978a45894c01b7015c6147f912d4
-    modified: 1683286838060
+    modified: 1683913880426
     created: 1683286659137
-    url: http://127.0.0.1:3000/hotels/esuites
+    url: http://127.0.0.1:3000/hotels/manara
     name: /hotels/<string:hotel_id>
     description: ""
     method: POST
@@ -75,7 +191,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"name":"E-suites",
+        	"name":"Manará",
         	"star": 5,
         	"price": 350.5,
         	"city": "Natal"
@@ -127,9 +243,9 @@ resources:
     _type: request
   - _id: req_535856ce20c04a5d9f83e90d2ff6665e
     parentId: fld_b1c4978a45894c01b7015c6147f912d4
-    modified: 1683287111027
+    modified: 1685555489964
     created: 1683286689724
-    url: http://127.0.0.1:3000/hotels/esuites
+    url: http://127.0.0.1:3000/hotels/manara
     name: /hotels/<string:hotel_id>
     description: ""
     method: DELETE

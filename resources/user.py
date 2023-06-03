@@ -1,8 +1,10 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required
 
 class User(Resource):
+    
+    @jwt_required()
     def get(self, user_id):
         user = UserModel.find_user(user_id)
         
@@ -13,6 +15,7 @@ class User(Resource):
         code = 404
         return {'message': 'User not found.'}, code
     
+    @jwt_required()
     def delete(self, user_id):
         user = UserModel.find_user(user_id)
 
